@@ -5,6 +5,7 @@ let audioEle = new Audio('Assets/1.mp3');
 let masterPlay=document.getElementById('masterPlay');
 let myProgBar=document.getElementById('myProgBar');
 let gif=document.getElementById('myProgBar');
+let masterSongName=document.getElementsByClassName('masterSong');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
 
 let songs=[
@@ -41,6 +42,7 @@ document.getElementById('next').addEventListener('click',()=>{
         songIdx=1;
     }
     audioEle.src=`Assets/${songIdx}.mp3`;
+    masterSongName.inner
     audioEle.currentTime=0;
     audioEle.play();
     audioEle.classList.remove('fa-play');
