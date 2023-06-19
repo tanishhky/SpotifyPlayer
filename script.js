@@ -5,19 +5,19 @@ let audioEle = new Audio('Assets/CryBaby.mp3');
 let masterPlay=document.getElementById('masterPlay');
 let myProgBar=document.getElementById('myProgBar');
 let gif=document.getElementById('myProgBar');
+let songItems = Array.from(document.getElementsByClassName('songItem'));
 
 
 let songs=[
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"Racing into the night",filePath:"Assets/.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
-    // {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"covers/1.jpg"},
+    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"Assets/crybaby.jpeg"},
+    {songName:"Racing into the night",filePath:"Assets/yoasobi-racing-into-the-night-lyrics-jpn-rom-eng.mp3",coverPath:"Assets/racing.jpg"},
+    {songName:"Suzume-no-Tojimari",filePath:"Assets/Suzume-No-Tojimari.mp3",coverPath:"Assets/suzume.webp"},
+    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"Assets/crybaby.jpeg"},
+    {songName:"Racing into the night",filePath:"Assets/yoasobi-racing-into-the-night-lyrics-jpn-rom-eng.mp3",coverPath:"Assets/racing.jpg"},
+    {songName:"Suzume-no-Tojimari",filePath:"Assets/Suzume-No-Tojimari.mp3",coverPath:"Assets/suzume.webp"},
+    {songName:"CryBaby",filePath:"Assets/CryBaby.mp3",coverPath:"Assets/crybaby.jpeg"},
+    {songName:"Racing into the night",filePath:"Assets/yoasobi-racing-into-the-night-lyrics-jpn-rom-eng.mp3",coverPath:"Assets/racing.jpg"},
+    {songName:"Suzume-no-Tojimari",filePath:"Assets/Suzume-No-Tojimari.mp3",coverPath:"Assets/suzume.webp"},
 ]
 
 masterPlay.addEventListener('click',()=>{
@@ -31,6 +31,11 @@ masterPlay.addEventListener('click',()=>{
         masterPlay.classList.remove('fa-pause');
         masterPlay.classList.add('fa-play');
     }
+})
+
+songItems.forEach((element,i)=>{
+    console.log(element,i);
+    element.getElementsByTagName("img")[0].src=songs[i].coverPath;
 })
 
 audioEle.addEventListener('timeupdate',()=>{
