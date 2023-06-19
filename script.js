@@ -11,12 +11,12 @@ let songs=[
     {songName:"CryBaby",filePath:"Assets/1.mp3",coverPath:"Assets/crybaby.jpeg"},
     {songName:"Racing into the night",filePath:"Assets/2.mp3",coverPath:"Assets/racing.jpg"},
     {songName:"Suzume-no-Tojimari",filePath:"Assets/3.mp3",coverPath:"Assets/suzume.webp"},
-    {songName:"CryBaby",filePath:"Assets/1.mp3",coverPath:"Assets/crybaby.jpeg"},
-    {songName:"Racing into the night",filePath:"Assets/2.mp3",coverPath:"Assets/racing.jpg"},
-    {songName:"Suzume-no-Tojimari",filePath:"Assets/3.mp3",coverPath:"Assets/suzume.webp"},
-    {songName:"CryBaby",filePath:"Assets/1.mp3",coverPath:"Assets/crybaby.jpeg"},
-    {songName:"Racing into the night",filePath:"Assets/2.mp3",coverPath:"Assets/racing.jpg"},
-    {songName:"Suzume-no-Tojimari",filePath:"Assets/3.mp3",coverPath:"Assets/suzume.webp"},
+    {songName:"Gurenge",filePath:"Assets/4.mp3",coverPath:"Assets/Gurenge.jpeg"},
+    {songName:"Unravel",filePath:"Assets/5.mp3",coverPath:"Assets/unravel.jpeg"},
+    {songName:"KickBack",filePath:"Assets/6.mp3",coverPath:"Assets/kickback.jpeg"},
+    {songName:"AshesOnFire",filePath:"Assets/7.mp3",coverPath:"Assets/aof.jpeg"},
+    {songName:"Shigatsu",filePath:"Assets/8.mp3",coverPath:"Assets/ylia.jpeg"},
+    {songName:"Ao-Haru-Ride",filePath:"Assets/9.mp3",coverPath:"Assets/ahr.jpeg"},
 ]
 
 masterPlay.addEventListener('click',()=>{
@@ -30,6 +30,32 @@ masterPlay.addEventListener('click',()=>{
         masterPlay.classList.remove('fa-pause');
         masterPlay.classList.add('fa-play');
     }
+})
+
+
+document.getElementById('next').addEventListener('click',()=>{
+    if(songIdx<9){
+        songIdx+=1;
+    }
+    else if(songIdx==9){
+        songIdx=1;
+    }
+    audioEle.src=`Assets/${songIdx}.mp3`;
+    audioEle.currentTime=0;
+    audioEle.play();
+    audioEle.classList.remove('fa-play');
+    audioEle.classList.add('fa-pause');
+})
+
+document.getElementById('prev').addEventListener('click',()=>{
+    if(songIdx>1){
+        songIdx-=1;
+    }
+    audioEle.src=`Assets/${songIdx}.mp3`;
+    audioEle.currentTime=0;
+    audioEle.play();
+    audioEle.classList.remove('fa-play');
+    audioEle.classList.add('fa-pause');
 })
 
 songItems.forEach((element,i)=>{
