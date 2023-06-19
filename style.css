@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body{
+    background-color: rgb(44, 44, 44);
+}
+
+*{
+    margin: 0;
+    padding: 0; 
+}
+
+nav{
+    font-family: 'Open Sans', sans-serif;
+    position: sticky;
+    top: 0px;
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    height: 60px;
+    background-color: black;
+    color: white;
+    align-items: center;
+}
+
+.navi{
+    align-self: center;
+    margin-right: 20px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.container{
+    height: fit-content;
+    background-color: rgb(30, 30, 30);
+    color: aliceblue;
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 25px auto;
+    width: 70%;
+    border-radius: 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 30px;
+}
+
+.conHead{
+    display:flexbox;
+    flex-direction: row;
+}
+.conHead img{
+    border-radius: 15px;
+    width: 100%;
+}
+
+.conHead h1{
+    font-size: 100;
+    margin: 10px 30px;
+}
+
+.songList{
+    display: flex;
+    flex-direction: column;
+}
+.songItem{
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.songItem img{
+    width: 64px;
+    border-radius: 10px;
+}
+
+.gradient{
+    background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255));
+}
+
+.brand img{
+    width: 50px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.brand{
+    font-weight: bolder;
+}
+nav ul li{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#brandName{
+    font-size:x-large;
+    align-self: left;
+}
+
+
+.bottom{
+    font-family: 'Open Sans',sans-serif;
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    bottom: 0px;
+    height:fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icons{
+    padding-top: 10px;
+    /* padding-bottom: 20px; */
+    scale: 2.5;
+    cursor: pointer;
+    padding-left: 30px;
+    padding-right: 30px;
+    ;
+}
+.icons i{
+    padding: 10px 10px 25px 10px;
+}
+
+#myProgBar{
+    width: 50vw;
+    cursor: pointer;
+    padding: 20px 40px 0px 40px;
+}
+
+.songInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: center;
+    color: aliceblue;
+}
+
+
+.songInfo img{
+    scale: 0.5;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
