@@ -1,12 +1,14 @@
 console.log("You are tuned into Spotify Player by Tanishk Yadav");
 
-let songIdx=0;
+let songIdx=1;
 let audioEle = new Audio('Assets/1.mp3');
 let masterPlay=document.getElementById('masterPlay');
 let myProgBar=document.getElementById('myProgBar');
-let gif=document.getElementById('myProgBar');
-let masterSongName=document.getElementsByClassName('masterSong');
+let gif=document.getElementById('eq');
+let masterSongName=document.getElementById('masterSong');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
+
+gif.style.opacity=0;
 
 let songs=[
     {songName:"CryBaby",filePath:"Assets/1.mp3",coverPath:"Assets/crybaby.jpeg"},
@@ -23,39 +25,63 @@ let songs=[
 masterPlay.addEventListener('click',()=>{
     if(audioEle.paused || audioEle.currentTime<=0){
         audioEle.play();
+        gif.style.opacity=1;
         masterPlay.classList.remove('fa-play');
         masterPlay.classList.add('fa-pause');
+        document.getElementById(`${songIdx}`).classList.remove('fa-play');
+        document.getElementById(`${songIdx}`).classList.add('fa-pause');
     }
     else{
         audioEle.pause();
+        gif.style.opacity=0;
         masterPlay.classList.remove('fa-pause');
         masterPlay.classList.add('fa-play');
+        document.getElementById(`${songIdx}`).classList.remove('fa-pause');
+        document.getElementById(`${songIdx}`).classList.add('fa-play');
     }
 })
 
-
-document.getElementById('next').addEventListener('click',()=>{
-    if(songIdx<9){
+function incSongIdx(){
+    if(songIdx<songs.length){
         songIdx+=1;
     }
-    else if(songIdx==9){
+    else if(songIdx=songs.length){
         songIdx=1;
     }
-    audioEle.src=`Assets/${songIdx}.mp3`;
-    masterSongName.inner
-    audioEle.currentTime=0;
-    audioEle.play();
-    audioEle.classList.remove('fa-play');
-    audioEle.classList.add('fa-pause');
-})
+}
 
-document.getElementById('prev').addEventListener('click',()=>{
+function decSongIdx(){
     if(songIdx>1){
         songIdx-=1;
     }
+}
+
+document.getElementById('next').addEventListener('click',()=>{
+    document.getElementById(`${songIdx}`).classList.remove('fa-pause');
+    document.getElementById(`${songIdx}`).classList.add('fa-play');
+    incSongIdx();
+    document.getElementById(`${songIdx}`).classList.remove('fa-play');
+    document.getElementById(`${songIdx}`).classList.add('fa-pause');
+    // makeAllPlay();
     audioEle.src=`Assets/${songIdx}.mp3`;
+    audioEle.classList.add('fa-play');
+    masterSongName.innerText=songs[songIdx-1].songName;
     audioEle.currentTime=0;
     audioEle.play();
+    gif.style.opacity=1;
+})
+
+document.getElementById('prev').addEventListener('click',()=>{
+    document.getElementById(`${songIdx}`).classList.remove('fa-pause');
+    document.getElementById(`${songIdx}`).classList.add('fa-play');
+    decSongIdx();
+    document.getElementById(`${songIdx}`).classList.remove('fa-play');
+    document.getElementById(`${songIdx}`).classList.add('fa-pause');
+    audioEle.src=`Assets/${songIdx}.mp3`;
+    masterSongName.innerText=songs[songIdx-1].songName;
+    audioEle.currentTime=0;
+    audioEle.play();
+    gif.style.opacity=1;
     audioEle.classList.remove('fa-play');
     audioEle.classList.add('fa-pause');
 })
@@ -72,7 +98,6 @@ audioEle.addEventListener('timeupdate',()=>{
 })
 
 myProgBar.addEventListener('change',()=>{
-    // console.log("entered");
     audioEle.currentTime=myProgBar.value * audioEle.duration/100;
 })
 
@@ -85,14 +110,28 @@ const makeAllPlay=()=>{
 Array.from(document.getElementsByClassName('songBtn')).forEach((element)=>{
     element.addEventListener('click',(e)=>{
         songIdx=parseInt(e.target.id);
+        masterSongName.innerText=songs[songIdx].songName;
         makeAllPlay();
         e.target.classList.remove('fa-play');
         e.target.classList.add('fa-pause');
         audioEle.src=`Assets/${songIdx}.mp3`;
         audioEle.currentTime=0;
         audioEle.play();
+        gif.style.opacity=1;
         masterPlay.classList.remove('fa-play');
         masterPlay.classList.add('fa-pause');
     })
 })
 
+document.getElementById('myProgBar').addEventListener('progress',()=>{
+    if(progress==100){
+        incSongIdx();
+        audioEle.src=`Assets/${songIdx}.mp3`;
+        masterSongName.innerText=songs[songIdx].songName;
+        audioEle.currentTime=0;
+        audioEle.play();
+        gif.style.opacity=1;
+        audioEle.classList.remove('fa-play');
+        audioEle.classList.add('fa-pause');
+    }
+})

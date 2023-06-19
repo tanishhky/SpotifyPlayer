@@ -133,7 +133,7 @@ nav ul li{
 #myProgBar{
     width: 50vw;
     cursor: pointer;
-    padding: 20px 40px 0px 40px;
+    margin: 20px 40px 0px 40px;
 }
 
 .songInfo{
@@ -147,6 +147,5 @@ nav ul li{
 
 .songInfo img{
     scale: 0.5;
-    opacity: 1;
     transition: opacity 1s ease-in;
 }
