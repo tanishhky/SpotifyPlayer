@@ -25,6 +25,7 @@ let songs=[
 masterPlay.addEventListener('click',()=>{
     if(audioEle.paused || audioEle.currentTime<=0){
         audioEle.play();
+        document.getElementById(`${songIdx}s`).style.backgroundColor='black';    
         gif.style.opacity=1;
         masterPlay.classList.remove('fa-play');
         masterPlay.classList.add('fa-pause');
@@ -59,9 +60,11 @@ function decSongIdx(){
 document.getElementById('next').addEventListener('click',()=>{
     document.getElementById(`${songIdx}`).classList.remove('fa-pause');
     document.getElementById(`${songIdx}`).classList.add('fa-play');
+    document.getElementById(`${songIdx}s`).style.backgroundColor='transparent';
     incSongIdx();
     document.getElementById(`${songIdx}`).classList.remove('fa-play');
     document.getElementById(`${songIdx}`).classList.add('fa-pause');
+    document.getElementById(`${songIdx}s`).style.backgroundColor='black';
     // makeAllPlay();
     audioEle.src=`Assets/${songIdx}.mp3`;
     audioEle.classList.add('fa-play');
@@ -74,9 +77,11 @@ document.getElementById('next').addEventListener('click',()=>{
 document.getElementById('prev').addEventListener('click',()=>{
     document.getElementById(`${songIdx}`).classList.remove('fa-pause');
     document.getElementById(`${songIdx}`).classList.add('fa-play');
+    document.getElementById(`${songIdx}s`).style.backgroundColor='transparent';
     decSongIdx();
     document.getElementById(`${songIdx}`).classList.remove('fa-play');
     document.getElementById(`${songIdx}`).classList.add('fa-pause');
+    document.getElementById(`${songIdx}s`).style.backgroundColor='black';
     audioEle.src=`Assets/${songIdx}.mp3`;
     masterSongName.innerText=songs[songIdx-1].songName;
     audioEle.currentTime=0;
@@ -109,13 +114,22 @@ const makeAllPlay=()=>{
 
 Array.from(document.getElementsByClassName('songBtn')).forEach((element)=>{
     element.addEventListener('click',(e)=>{
+        idx=songIdx;
+        document.getElementById(`${songIdx}s`).style.backgroundColor='transparent';
         songIdx=parseInt(e.target.id);
-        masterSongName.innerText=songs[songIdx].songName;
+        document.getElementById(`${songIdx}s`).style.backgroundColor='black';
         makeAllPlay();
+        if(songIdx!=idx){
+            masterSongName.innerText=songs[songIdx-1].songName;
+            audioEle.src=`Assets/${songIdx}.mp3`;
+            audioEle.currentTime=0;
+        }
+        else{
+            document.getElementById(`${songIdx}s`).style.backgroundColor='black';
+        }
+        console.log(songIdx);
         e.target.classList.remove('fa-play');
         e.target.classList.add('fa-pause');
-        audioEle.src=`Assets/${songIdx}.mp3`;
-        audioEle.currentTime=0;
         audioEle.play();
         gif.style.opacity=1;
         masterPlay.classList.remove('fa-play');
